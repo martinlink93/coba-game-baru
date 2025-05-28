@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Petualangan Ilmu Kehidupan</title>
+  <title>Body Parts Function Adventure</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: #e6f7ff;
+      background: #f0f8ff;
       margin: 0;
       padding: 20px;
       display: flex;
@@ -15,7 +15,6 @@
       align-items: center;
       min-height: 100vh;
     }
-
     .container {
       width: 100%;
       max-width: 600px;
@@ -25,17 +24,8 @@
       box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
       text-align: center;
     }
-
-    h1 {
-      font-size: 1.8rem;
-      color: #333;
-    }
-
-    .question {
-      font-size: 1.2rem;
-      margin: 20px 0;
-    }
-
+    h1 { font-size: 1.8rem; color: #333; }
+    .question { font-size: 1.2rem; margin: 20px 0; }
     .choices button {
       display: block;
       width: 100%;
@@ -49,85 +39,84 @@
       cursor: pointer;
       transition: 0.3s;
     }
-
-    .choices button:hover {
-      background-color: #0056b3;
-    }
-
-    .result {
-      font-size: 1.3rem;
-      margin-top: 25px;
-    }
-
-    button#start-btn {
-      background-color: green;
-    }
-
+    .choices button:hover { background-color: #0056b3; }
+    .result { font-size: 1.3rem; margin-top: 25px; }
+    button#start-btn { background-color: green; }
     @media (max-width: 480px) {
-      h1 {
-        font-size: 1.5rem;
-      }
-
-      .question {
-        font-size: 1rem;
-      }
-
-      .choices button {
-        font-size: 0.95rem;
-        padding: 12px;
-      }
+      h1 { font-size: 1.5rem; }
+      .question { font-size: 1rem; }
+      .choices button { font-size: 0.95rem; padding: 12px; }
     }
   </style>
 </head>
 <body>
-
   <div class="container" id="quiz-container">
-    <h1>Petualangan Ilmu Kehidupan</h1>
-    <p>Uji pengetahuanmu tentang tubuh dan kehidupan!</p>
-    <button id="start-btn">Mulai Petualangan!</button>
+    <h1>Body Parts Function Adventure</h1>
+    <p>Let's start the fun quiz about body parts and their functions!</p>
+    <button id="start-btn">Start Adventure!</button>
   </div>
-
   <script>
     const questions = [
       {
-        question: "Organ yang berfungsi menyaring udara sebelum masuk ke paru-paru adalah?",
-        choices: ["Hidung", "Paru-paru", "Tenggorokan", "Mulut"],
-        answer: 0
-      },
-      {
-        question: "Alat pernapasan utama pada manusia adalah?",
-        choices: ["Paru-paru", "Hidung", "Jantung", "Lambung"],
-        answer: 0
-      },
-      {
-        question: "Proses pemecahan makanan secara kimia terjadi di?",
-        choices: ["Usus besar", "Kerongkongan", "Lambung", "Mulut"],
-        answer: 2
-      },
-      {
-        question: "Fungsi usus halus dalam sistem pencernaan adalah?",
-        choices: ["Menyimpan makanan", "Mencerna dan menyerap sari makanan", "Mengeluarkan feses", "Mengunyah makanan"],
+        question: "What is the main function of the eyes?",
+        choices: ["To hear sounds", "To see things", "To taste food", "To smell odors"],
         answer: 1
       },
       {
-        question: "Organ pernapasan utama pada ikan adalah?",
-        choices: ["Paru-paru", "Kulit", "Insang", "Trakea"],
+        question: "Which body part helps you to smell flowers?",
+        choices: ["Ears", "Mouth", "Nose", "Hands"],
         answer: 2
+      },
+      {
+        question: "What do your ears help you do?",
+        choices: ["See colors", "Hear music", "Taste candy", "Touch objects"],
+        answer: 1
+      },
+      {
+        question: "Which part of the body is used for tasting?",
+        choices: ["Feet", "Tongue", "Eyes", "Nose"],
+        answer: 1
+      },
+      {
+        question: "What do your hands help you do?",
+        choices: ["Walk", "Hear", "Write", "See"],
+        answer: 2
+      },
+      {
+        question: "Which body part helps you walk and run?",
+        choices: ["Legs", "Ears", "Eyes", "Tongue"],
+        answer: 0
+      },
+      {
+        question: "What is the main function of your skin?",
+        choices: ["To protect the body", "To taste food", "To help see", "To help hear"],
+        answer: 0
+      },
+      {
+        question: "Which part of your body do you use to chew food?",
+        choices: ["Ears", "Teeth", "Nose", "Feet"],
+        answer: 1
+      },
+      {
+        question: "What is the function of the heart?",
+        choices: ["To pump blood", "To digest food", "To see", "To smell"],
+        answer: 0
+      },
+      {
+        question: "Which body part helps you think and remember?",
+        choices: ["Brain", "Nose", "Stomach", "Hand"],
+        answer: 0
       }
     ];
-
     let currentQuestion = 0;
     let score = 0;
-
     const container = document.getElementById('quiz-container');
     const startBtn = document.getElementById('start-btn');
-
     startBtn.addEventListener('click', showQuestion);
-
     function showQuestion() {
       const q = questions[currentQuestion];
       container.innerHTML = `
-        <h1>Soal ${currentQuestion + 1}</h1>
+        <h1>Question ${currentQuestion + 1}</h1>
         <div class="question">${q.question}</div>
         <div class="choices">
           ${q.choices.map((choice, index) => `
@@ -136,21 +125,18 @@
         </div>
       `;
     }
-
-    function checkAnswer(selected) {
+    window.checkAnswer = function(selected) {
       const isCorrect = selected === questions[currentQuestion].answer;
       if (isCorrect) score++;
-
       currentQuestion++;
-
       if (currentQuestion < questions.length) {
         setTimeout(showQuestion, 500);
       } else {
         container.innerHTML = `
-          <h1>Petualangan Selesai!</h1>
-          <p class="result">Skor kamu: ${score} dari ${questions.length}</p>
-          <p>${score === questions.length ? "Hebat sekali! 🌟" : "Kamu hebat! Ayo coba lagi dan tingkatkan nilaimu!"}</p>
-          <button onclick="location.reload()">Main Lagi</button>
+          <h1>Adventure Complete!</h1>
+          <p class="result">Your score: ${score} out of ${questions.length}</p>
+          <p>${score === questions.length ? "Amazing! 🎉" : "Try again for a better score!"}</p>
+          <button onclick="location.reload()">Play Again</button>
         `;
       }
     }
